@@ -1137,7 +1137,7 @@
 
 +(NSBundle *)getResourcesBundle
 {
-    NSBundle *bundle = [NSBundle bundleWithURL:[[NSBundle bundleForClass:[self class]] URLForResource:@"IAlertView" withExtension:@"bundle"]];
+    NSBundle *bundle = [NSBundle bundleWithURL:[[NSBundle bundleForClass:[self class]] URLForResource:@"FCAlertView" withExtension:@"bundle"]];
     return bundle;
 }
 
