@@ -1,5 +1,5 @@
 //
-//  FCAlertView.h
+//  IAlertView.h
 //  ShiftRide
 //
 //  Created by Nima Tahami on 2016-07-10.
@@ -12,9 +12,9 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 
-@protocol FCAlertViewDelegate;
+@protocol IAlertViewDelegate;
 
-@interface FCAlertView : UIView <UITextFieldDelegate> {
+@interface IAlertView : UIView <UITextFieldDelegate> {
     
     // Blur
     
@@ -69,7 +69,7 @@
 
 // Delegate
 
-@property (nonatomic, weak) id<FCAlertViewDelegate> delegate;
+@property (nonatomic, weak) id<IAlertViewDelegate> delegate;
 
 // AlertView Title & Subtitle Text
 
@@ -212,11 +212,11 @@ typedef void (^FCTextReturnBlock)(NSString *text);
 
 @end
 
-@protocol FCAlertViewDelegate <NSObject>
+@protocol IAlertViewDelegate <NSObject>
 @optional
-- (void)FCAlertView:( FCAlertView *)alertView clickedButtonIndex:(NSInteger)index buttonTitle:(NSString *)title;
-- (void)FCAlertViewDismissed:(FCAlertView *)alertView;
-- (void)FCAlertViewWillAppear:(FCAlertView *)alertView;
-- (void)FCAlertDoneButtonClicked:(FCAlertView *)alertView;
+- (void)IAlertView:( IAlertView *)alertView clickedButtonIndex:(NSInteger)index buttonTitle:(NSString *)title;
+- (void)IAlertViewDismissed:(IAlertView *)alertView;
+- (void)IAlertViewWillAppear:(IAlertView *)alertView;
+- (void)IAlertDoneButtonClicked:(IAlertView *)alertView;
 
 @end
