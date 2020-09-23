@@ -6,9 +6,9 @@
 //  Copyright © 2016 Nima Tahami. All rights reserved.
 //
 
-#import "FCAlertView.h"
+#import "IAlertView.h"
 
-@implementation FCAlertView
+@implementation IAlertView
 
 - (id)init
 {
@@ -136,7 +136,7 @@
     }
 }
 
-#pragma mark - FCAlertView Checks
+#pragma mark - IAlertView Checks
 #pragma mark - Customization Data Checkpoint
 
 - (void) checkCustomizationValid {
@@ -152,7 +152,7 @@
     
     if (![self hasSubTitle])
         if (![self hasTitle])
-            NSLog(@"FCAlertView Warning: Your Alert should have a title and/or subtitle.");
+            NSLog(@"IAlertView Warning: Your Alert should have a title and/or subtitle.");
     
     if (doneTitle == nil || [doneTitle isEqualToString:@""]) {
         doneTitle = @"OK";
@@ -1137,7 +1137,7 @@
 
 +(NSBundle *)getResourcesBundle
 {
-    NSBundle *bundle = [NSBundle bundleWithURL:[[NSBundle bundleForClass:[self class]] URLForResource:@"FCAlertView" withExtension:@"bundle"]];
+    NSBundle *bundle = [NSBundle bundleWithURL:[[NSBundle bundleForClass:[self class]] URLForResource:@"IAlertView" withExtension:@"bundle"]];
     return bundle;
 }
 
@@ -1150,7 +1150,7 @@
     
     if (cim == nil && cgref == NULL)
     {
-        NSBundle *bundle = [FCAlertView getResourcesBundle];
+        NSBundle *bundle = [IAlertView getResourcesBundle];
         NSString *imageFileName = [NSString stringWithFormat:@"%@.png",imageName];
         UIImage *image = [UIImage imageNamed:imageFileName inBundle:bundle compatibleWithTraitCollection:nil];
         return image;
@@ -1373,10 +1373,10 @@
 
 - (void) showAlertView {
     
-    id<FCAlertViewDelegate> strongDelegate = self.delegate;
+    id<IAlertViewDelegate> strongDelegate = self.delegate;
     
-    if ([strongDelegate respondsToSelector:@selector(FCAlertViewWillAppear:)]) {
-        [strongDelegate FCAlertViewWillAppear:self];
+    if ([strongDelegate respondsToSelector:@selector(IAlertViewWillAppear:)]) {
+        [strongDelegate IAlertViewWillAppear:self];
     }
     
     [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
@@ -1494,10 +1494,10 @@
     } completion:^(BOOL finished) {
         
         if (!_animateAlertOutToTop && !_animateAlertOutToLeft && !_animateAlertOutToRight && !_animateAlertOutToBottom) {
-            id<FCAlertViewDelegate> strongDelegate = self.delegate;
+            id<IAlertViewDelegate> strongDelegate = self.delegate;
             
-            if ([strongDelegate respondsToSelector:@selector(FCAlertViewDismissed:)]) {
-                [strongDelegate FCAlertViewDismissed:self];
+            if ([strongDelegate respondsToSelector:@selector(IAlertViewDismissed:)]) {
+                [strongDelegate IAlertViewDismissed:self];
             }
             
             [backgroundVisualEffectView removeFromSuperview];
@@ -1530,20 +1530,20 @@
                                                              alertViewFrame.size.width,
                                                              alertViewFrame.size.height);
                 }completion:^(BOOL finished) {
-                    id<FCAlertViewDelegate> strongDelegate = self.delegate;
+                    id<IAlertViewDelegate> strongDelegate = self.delegate;
                     
-                    if ([strongDelegate respondsToSelector:@selector(FCAlertViewDismissed:)]) {
-                        [strongDelegate FCAlertViewDismissed:self];
+                    if ([strongDelegate respondsToSelector:@selector(IAlertViewDismissed:)]) {
+                        [strongDelegate IAlertViewDismissed:self];
                     }
                     
                     [backgroundVisualEffectView removeFromSuperview];
                     [self removeFromSuperview];
                 }];
             } else {
-                id<FCAlertViewDelegate> strongDelegate = self.delegate;
+                id<IAlertViewDelegate> strongDelegate = self.delegate;
                 
-                if ([strongDelegate respondsToSelector:@selector(FCAlertViewDismissed:)]) {
-                    [strongDelegate FCAlertViewDismissed:self];
+                if ([strongDelegate respondsToSelector:@selector(IAlertViewDismissed:)]) {
+                    [strongDelegate IAlertViewDismissed:self];
                 }
                 
                 [backgroundVisualEffectView removeFromSuperview];
@@ -1584,7 +1584,7 @@
 
 - (void)handleButton:(id)sender {
     
-    id<FCAlertViewDelegate> strongDelegate = self.delegate;
+    id<IAlertViewDelegate> strongDelegate = self.delegate;
     
     // Return Text from TextField to Block
     
@@ -1611,8 +1611,8 @@
         }
     }
     
-    if ([strongDelegate respondsToSelector:@selector(FCAlertView:clickedButtonIndex:buttonTitle:)]) {
-        [strongDelegate FCAlertView:self clickedButtonIndex:[sender tag] buttonTitle:clickedButton.titleLabel.text];
+    if ([strongDelegate respondsToSelector:@selector(IAlertView:clickedButtonIndex:buttonTitle:)]) {
+        [strongDelegate IAlertView:self clickedButtonIndex:[sender tag] buttonTitle:clickedButton.titleLabel.text];
     }
     
     // Return Rating from Rating Controller
@@ -1642,7 +1642,7 @@
 
 - (void) donePressed {
     
-    id<FCAlertViewDelegate> strongDelegate = self.delegate;
+    id<IAlertViewDelegate> strongDelegate = self.delegate;
 
     // Return Text from TextField to Block
     
@@ -1660,8 +1660,8 @@
     if (self.doneBlock)
         self.doneBlock();
     
-    if ([strongDelegate respondsToSelector:@selector(FCAlertDoneButtonClicked:)]) {
-        [strongDelegate FCAlertDoneButtonClicked:self];
+    if ([strongDelegate respondsToSelector:@selector(IAlertDoneButtonClicked:)]) {
+        [strongDelegate IAlertDoneButtonClicked:self];
     }
     
     // Return Rating from Rating Controller
